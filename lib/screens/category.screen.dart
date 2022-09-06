@@ -14,11 +14,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       appBar: AppBar(
         leading: ElevatedButton(
           onPressed: () {},
-
           child: const Icon(Icons.arrow_back),
-          style:  ButtonStyle(
+          style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.deepOrange),
             elevation: MaterialStateProperty.all(0),
+            /*padding: MaterialStateProperty.all(EdgeInsets.all(50)),
+            textStyle: MaterialStateProperty.all(
+              TextStyle(fontSize: 30),
+            ),*/
           ),
         ),
         title: const Text(

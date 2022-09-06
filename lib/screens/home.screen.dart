@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp_sqf/helpers/drawer.navigation.dart';
 import 'package:todoapp_sqf/src/app.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         backgroundColor: Colors.deepOrange,
       ),
+      drawer: const DrawerNavigation(),
     );
   }
 }
