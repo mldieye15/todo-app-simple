@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp_sqf/screens/home.screen.dart';
+import 'package:todoapp_sqf/services/category.service.dart';
+
+import '../models/category.model.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -9,6 +12,11 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  final TextEditingController _categoryNameConrtoller = TextEditingController();
+  final TextEditingController _categoryDescriptionConrtoller = TextEditingController();
+  final CategoryService _service = CategoryService();
+  final Category _category = Category();
+
   _showFormDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -25,7 +33,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 child: const Text("Cancel"),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  _category.name = _categoryNameConrtoller.text;
+                  _category.description = _categoryNameConrtoller.text;
+                  _service.save(_category);
+                },
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.all(0),
                 ),
@@ -36,14 +48,16 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             content: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  const TextField(
-                    decoration: InputDecoration(
+                  TextField(
+                    controller: _categoryNameConrtoller,
+                    decoration: const InputDecoration(
                       hintText: "Write a category",
                       labelText: "Category",
                     ),
                   ),
-                  const TextField(
-                    decoration: InputDecoration(
+                  TextField(
+                    controller: _categoryDescriptionConrtoller,
+                    decoration: const InputDecoration(
                       hintText: "Write a description",
                       labelText: "Description",
                     ),
