@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp_sqf/screens/home.screen.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -8,13 +9,59 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  _showFormDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (param) {
+          return AlertDialog(
+            actions: <Widget>[
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ButtonStyle(
+                  elevation: MaterialStateProperty.all(0),
+                  backgroundColor: MaterialStateProperty.all(Colors.red),
+                ),
+                child: const Text("Cancel"),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                style: ButtonStyle(
+                  elevation: MaterialStateProperty.all(0),
+                ),
+                child: const Text("Save"),
+              ),
+            ],
+            title: const Text("Categories Form"),
+            content: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  const TextField(
+                    decoration: InputDecoration(
+                      hintText: "Write a category",
+                      labelText: "Category",
+                    ),
+                  ),
+                  const TextField(
+                    decoration: InputDecoration(
+                      hintText: "Write a description",
+                      labelText: "Description",
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: ElevatedButton(
-          onPressed: () {},
-          child: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const HomeScreen())),
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.deepOrange),
             elevation: MaterialStateProperty.all(0),
@@ -23,6 +70,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               TextStyle(fontSize: 30),
             ),*/
           ),
+          child: const Icon(Icons.arrow_back),
         ),
         title: const Text(
           'Categories',
@@ -39,12 +87,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           'Welcome to Categories screen',
           style: TextStyle(
             color: Colors.deepOrange,
-            fontSize: 30,
+            fontSize: 25,
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          _showFormDialog(context);
+        },
         child: const Icon(Icons.add),
       ),
     );
