@@ -33,10 +33,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 child: const Text("Cancel"),
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   _category.name = _categoryNameConrtoller.text;
                   _category.description = _categoryNameConrtoller.text;
-                  _service.save(_category);
+                  var result = _service.save(_category);
+                  print(result);
                 },
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.all(0),
