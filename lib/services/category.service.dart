@@ -11,6 +11,6 @@ class CategoryService{
   }
 
   save(Category category) async {
-    return await repository.insert("categories", category);
+    return await repository.insert('categories', category);
   }
 }

@@ -9,14 +9,13 @@ class DatabaseConnection {
     var path = join(directory.path, 'todolist.db');
     var db =
         await openDatabase(path, version: 1, onCreate: _onCreatingDatabase);
-    print(db);
     return db;
   }
 
   _onCreatingDatabase(Database database, int version) async {
     await database.execute('''
       CREATE TABLE categories(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         name TEXT,
         description TEXT
       )

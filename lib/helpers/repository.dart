@@ -8,15 +8,15 @@ class Repository {
     _databaseConnection = DatabaseConnection();
   }
 
-  static late Database _database;
+  static Database? _database;
 
   Future<Database> get database async {
-     if(_database != null) return _database;
+     if(_database != null) return _database!;
      _database = await _databaseConnection.setDatabase();
-     return _database;
+     return _database!;
   }
 
-  insert(table, data) async {
+  Future<int> insert(table, data) async {
       var connection = await database;
       return connection.insert(table, data);
   }

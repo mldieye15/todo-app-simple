@@ -36,6 +36,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 onPressed: () async {
                   _category.name = _categoryNameConrtoller.text;
                   _category.description = _categoryNameConrtoller.text;
+
                   var result = _service.save(_category);
                   print(result);
                 },
